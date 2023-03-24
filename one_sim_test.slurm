@@ -1,6 +1,6 @@
 #!/bin/bash
   
-#SBATCH -J simulation_gast_map_create_param_tb
+#SBATCH -J somatic_mutation_one_simulation_test
 #SBATCH --partition=defq
 #SBATCH -c 1                            # one CPU core per task
 #SBATCH -t 00:10:00
