@@ -3,7 +3,8 @@ library(r2r)
 library(qfm)
 library(furrr)
 library(rgl)
-library(treespace)
+#library(treespace)
+library(TreeDist)
 setwd('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo')
 
 # get job id from system 
@@ -77,11 +78,10 @@ tr2 = phylotime(chr_mat, t_total = res2$total_time - tr$root.edge)
 tr2$root.edge <- res2$total_time - tr$root.edge
 
 #calculate distances
-kc0 <- treeDist(tr,tr2, lambda = 0)
-kc1 <- treeDist(tr,tr2, lambda = 1)
+kc0 <- TreeDist(tr,tr2)
 
 #save results
-result <- paste(param_tb$sample_size[job_id], param_tb$sampling[job_id], mut_rate, filename, job_id, num_mut, kc0, kc1, sep = '\t')
+result <- paste(param_tb$sample_size[job_id], param_tb$sampling[job_id], mut_rate, filename, job_id, num_mut, kc0, kc0, sep = '\t')
 system(paste("echo",result,'>> /home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/results.txt'))
 file = paste(filename, mut_rate, param_tb$num_sim_2, '.rda', sep = "")
 save(tr2, file = paste('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/', file, sep = ""))
