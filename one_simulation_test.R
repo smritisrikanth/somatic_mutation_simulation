@@ -5,7 +5,7 @@ library(furrr)
 #library(rgl)
 #library(treespace)
 library(TreeDist)
-setwd('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo')
+#setwd('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo')
 
 # get job id from system 
 job_id = 49
