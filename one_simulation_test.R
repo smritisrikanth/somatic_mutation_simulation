@@ -1,3 +1,5 @@
+sink(stdout(), type="message")
+
 library(tidyverse)
 library(r2r)
 library(qfm)
