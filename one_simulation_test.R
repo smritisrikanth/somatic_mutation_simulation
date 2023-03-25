@@ -25,6 +25,7 @@ print('success')
 if (file.exists(filename)) {
     load(filename)
 } else {
+    print('file not found')
     stop()
 }
 print('success')
