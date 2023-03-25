@@ -78,7 +78,7 @@ tr2 = phylotime(chr_mat, t_total = res2$total_time - tr$root.edge)
 tr2$root.edge <- res2$total_time - tr$root.edge
 
 #calculate distances
-kc0 <- TreeDist(tr,tr2)
+kc0 <- KendallColijn(tr,tr2)
 
 #save results
 result <- paste(param_tb$sample_size[job_id], param_tb$sampling[job_id], mut_rate, filename, job_id, num_mut, kc0, kc0, sep = '\t')
