@@ -19,7 +19,7 @@ param_tb <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_re
 print('success')
 
 #load file
-filename <- paste('./input/', param_tb$input_file[job_id], sep = "")
+filename <- paste('./input/yi_output', param_tb$input_file[job_id], sep = "")
 print('success')
 
 if (file.exists(filename)) {
