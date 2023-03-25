@@ -8,6 +8,7 @@ library(furrr)
 #library(treespace)
 library(TreeDist)
 setwd('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo')
+print('success')
 
 # get job id from system 
 job_id = 49
@@ -15,15 +16,18 @@ job_id = 49
 # construct parameter table 
 
 param_tb <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/param_tb.txt',header = T)
+print('success')
 
 #load file
 filename <- paste('./input/', param_tb$input_file[job_id], sep = "")
+print('success')
+
 if (file.exists(filename)) {
     load(filename)
 } else {
     stop()
 }
-
+print('success')
 #initialize parameters
 total_bp <- 10^9
 mut_rate <- param_tb$mutation_rate[job_id]
@@ -32,6 +36,7 @@ mut_list <- c()
 node_mut_list <- hashmap()
 
 in_node <- count_graph$phylo_edges$in_node
+print('success')
 edge_length <- count_graph$phylo_edges$length
 node_mut_list[[names(in_node)[1]]] <- character()
 i <- 1
@@ -73,6 +78,7 @@ chr_mat = as.matrix(m[-c(1:2)])
 rownames(chr_mat) = m$cell
 
 plan(multisession, workers = 8)
+print('success')
 
 mut_p = estimate_mut_p(chr_mat, t_total = res2$total_time - tr$root.edge)
 mut_p$mut_rate = rep(mut_rate, ncol(m)-2)
@@ -82,10 +88,11 @@ tr2$root.edge <- res2$total_time - tr$root.edge
 
 #calculate distances
 kc0 <- KendallColijn(tr,tr2)
+print('success')
 
 #save results
 result <- paste(param_tb$sample_size[job_id], param_tb$sampling[job_id], mut_rate, filename, job_id, num_mut, kc0, kc0, sep = '  ')
-
+print('success')
 system(paste("echo ",result,' >> /home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/results.txt', sep = ""))
 file = paste(filename, '_', mut_rate, '_', param_tb$num_sim_2, '.rda', sep = "")
 save(tr2, file = paste0('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/', file))
