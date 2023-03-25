@@ -15,7 +15,7 @@ job_id = 49
 param_tb <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/param_tb.txt',header = T)
 
 #load file
-filename <- paste('./input', param_tb$input_file[job_id], sep = "")
+filename <- paste('./input/', param_tb$input_file[job_id], sep = "")
 if (file.exists(filename)) {
     load(filename)
 } else {
