@@ -86,6 +86,7 @@ mut_p = estimate_mut_p(chr_mat, t_total = res2$total_time - tr$root.edge)
 mut_p$mut_rate = rep(mut_rate, ncol(m)-2)
 
 tr2 = phylotime(chr_mat, t_total = res2$total_time - tr$root.edge)
+print('phylotime done')
 tr2$root.edge <- res2$total_time - tr$root.edge
 
 #calculate distances
