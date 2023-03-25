@@ -2,7 +2,7 @@ library(tidyverse)
 library(r2r)
 library(qfm)
 library(furrr)
-library(rgl)
+#library(rgl)
 #library(treespace)
 library(TreeDist)
 setwd('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo')
@@ -11,6 +11,7 @@ setwd('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo')
 job_id = 49
 
 # construct parameter table 
+
 param_tb <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/param_tb.txt',header = T)
 
 #load file
@@ -81,7 +82,8 @@ tr2$root.edge <- res2$total_time - tr$root.edge
 kc0 <- KendallColijn(tr,tr2)
 
 #save results
-result <- paste(param_tb$sample_size[job_id], param_tb$sampling[job_id], mut_rate, filename, job_id, num_mut, kc0, kc0, sep = '\t')
+result <- paste(param_tb$sample_size[job_id], param_tb$sampling[job_id], mut_rate, filename, job_id, num_mut, kc0, kc0, sep = '  ')
+
 system(paste("echo ",result,' >> /home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/results.txt', sep = ""))
 file = paste(filename, '_', mut_rate, '_', param_tb$num_sim_2, '.rda', sep = "")
 save(tr2, file = paste0('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/', file))
