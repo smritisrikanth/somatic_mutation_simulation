@@ -79,7 +79,7 @@ m <- m[,c(1,ncol(m),3:ncol(m))]
 chr_mat = as.matrix(m[-c(1:2)])
 rownames(chr_mat) = m$cell
 
-plan(multisession, workers = 8)
+#plan(multisession, workers = 8)
 print('success')
 
 mut_p = estimate_mut_p(chr_mat, t_total = res2$total_time - tr$root.edge)
