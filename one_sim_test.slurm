@@ -3,7 +3,7 @@
 #SBATCH -J somatic_mutation_one_simulation_test
 #SBATCH --partition=defq
 #SBATCH --cpus-per-task=8                            # one CPU core per task
-#SBATCH -t 00:20:00
+#SBATCH -t 01:00:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ssrikan2@jhu.edu
 
