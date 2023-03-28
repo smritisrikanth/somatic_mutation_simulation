@@ -98,4 +98,4 @@ result <- paste(param_tb$sample_size[job_id], param_tb$sampling[job_id], mut_rat
 print('success')
 system(paste("echo ",result,' >> /home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/results.txt', sep = ""))
 output_filename = paste(filename, '_', mut_rate, '_', param_tb$num_sim_2, '.rda', sep = "")
-save(tr2, file = paste('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/', output_filename,sep = ""))
+save(tr2, list = c("tr2"), file = output_filename)
