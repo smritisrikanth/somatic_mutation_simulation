@@ -5,8 +5,8 @@
 #SBATCH -J somatic_mutation_simulation
 #SBATCH --partition=defq
 #SBATCH --array=1-720                    # how many tasks in the array
-#SBATCH -c 1                            # one CPU core per task
-#SBATCH -t 1800:00:00
+#SBATCH --cpus-per-task=8                            # one CPU core per task
+#SBATCH -t 20:00:00
 #SBATCH -o try-%j-%a.out
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ssrikan2@jhu.edu
