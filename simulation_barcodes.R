@@ -2,12 +2,12 @@ sink(stdout(), type="message")
 
 # simulate lineage barcodes
 library(ape)
-library(qfm2)
+library(qfm)
 library(tidyverse)
 library(igraph)
 library(ggraph)
 setwd('/home/ssrikan2/data-kreza1/smriti/qfm2')
-devtools::load_all()
+#devtools::load_all()
 
 #job_id = as.numeric(Sys.getenv('SLURM_ARRAY_TASK_ID'))
 job_id = 49
