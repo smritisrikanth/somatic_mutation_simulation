@@ -14,6 +14,9 @@ job_id = 49
 input_path <- '/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/'
 param_table <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output2/param_tb_2.txt',header = T)
 load(paste0(input_path,param_table$input_file[job_id]))
+input_path_original <- '/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/input/yi_output/'
+load(paste0(input_path_original, param_table$input_file_original[job_id]))
+
 global_step_size = 0.01
 global_target_time = 9.0
 # mut_p = readRDS("./metadata//mut_p_marc1.rds")
