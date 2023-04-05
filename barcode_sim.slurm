@@ -12,4 +12,4 @@ ml anaconda
 conda activate r4-base
 
 # Run R script with a command line argument
-Rscript ./../qfm2/simulation_barcodes_2.R
+Rscript ./../../qfm2/simulation_barcodes_2.R
