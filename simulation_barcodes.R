@@ -12,7 +12,7 @@ setwd('/home/ssrikan2/data-kreza1/smriti/qfm2')
 #job_id = as.numeric(Sys.getenv('SLURM_ARRAY_TASK_ID'))
 job_id = 49
 input_path <- '/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/'
-param_table <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/output2/param_tb_2.txt',header = T)
+param_table <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output2/param_tb_2.txt',header = T)
 load(paste0(input_path,param_table$input_file[job_id]))
 global_step_size = 0.01
 global_target_time = 9.0
