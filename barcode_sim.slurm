@@ -1,9 +1,13 @@
 #!/bin/bash
-  
-#SBATCH -J barcode_simulation
+
+# Example of running R script with a job array
+
+#SBATCH -J somatic_mutation_simulation
 #SBATCH --partition=defq
+#SBATCH --array=1-720                    # how many tasks in the array
 #SBATCH --cpus-per-task=4                            # one CPU core per task
-#SBATCH -t 00:5:00
+#SBATCH -t 00:02:00
+#SBATCH -o try-%j-%a.out
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ssrikan2@jhu.edu
 
@@ -12,4 +16,4 @@ ml anaconda
 conda activate r4-base
 
 # Run R script with a command line argument
-Rscript ./../../qfm2/simulation_barcodes_2.R
+Rscript ./../../qfm2/simulation_barcodes_2.R $SLURM_ARRAY_TASK_ID
