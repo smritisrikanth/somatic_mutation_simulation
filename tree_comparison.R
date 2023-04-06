@@ -93,7 +93,7 @@ compare_partitions <- function (p1, p2) {
 }
 
 #calculations
-p <- get_partitions(phy)
+p <- get_partitions(tr)
 p0 <- get_partitions(res0)
 p1 <- get_partitions(res1)
 
