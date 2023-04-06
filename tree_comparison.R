@@ -92,7 +92,7 @@ compare_partitions <- function (p1, p2) {
   return(c(count, length(p1), length(p2)))
 }
 
-phy = readRDS("./intermediate_data/gast_phylo.rds")
+phy = readRDS("/home/ssrikan2/data-kreza1/smriti/qfm2/intermediate_data/gast_phylo.rds")
 
 #calculations
 p <- get_partitions(phy)
