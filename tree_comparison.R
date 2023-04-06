@@ -14,8 +14,8 @@ devtools::load_all()
 
 setwd('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo')
 
-job_id = 49
-#job_id = as.numeric(Sys.getenv('SLURM_ARRAY_TASK_ID'))
+#job_id = 49
+job_id = as.numeric(Sys.getenv('SLURM_ARRAY_TASK_ID'))
 
 # construct parameter table 
 
