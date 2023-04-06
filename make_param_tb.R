@@ -1,7 +1,7 @@
 library(tidyverse)
 
 param_tb = as_tibble(expand.grid(mutation_rate = c(1e-8,1e-9,1e-10),
-                                 sampling = c('fixed', 'proportional'), sample_size = c(50,100,200), reconstruction_num = c('res0', 'res1'), num_sim_1 = 1:20))
+                                 sampling = c('fixed', 'proportional'), sample_size = c(50,100,200), num_sim_1 = 1:20, reconstruction_num = c('res0', 'res1')))
 
 param_tb$input_file = paste('sample_size_', param_tb$sample_size, '_', param_tb$sampling, '_', floor((as.numeric(rownames(param_tb))+5)/6), '.rda', sep = "")
 #param_tb$input_file_original = paste('sample_size_', param_tb$sample_size, '_', param_tb$sampling, '_', floor((as.numeric(rownames(param_tb))+2)/3), '.rda', sep = "")
