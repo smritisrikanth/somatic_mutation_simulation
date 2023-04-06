@@ -19,7 +19,7 @@ job_id = 49
 
 # construct parameter table 
 
-param_tb <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/param_tb.txt',header = T)
+param_tb <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/correctness_output/param_tb_3.txt',header = T)
 filename <- paste('./input/yi_output/', param_tb$input_file[job_id], sep = "")
 if (file.exists(filename)) {
     load(filename)
