@@ -113,6 +113,7 @@ r1_complete <- (r1[2] - r1[1])/r1[2]
 result0 <- paste(param_tb$sample_size[job_id], param_tb$sampling[job_id], filename, 'res0', job_id, r0_correct, r0_complete, sep = '  ')
 result1 <- paste(param_tb$sample_size[job_id], param_tb$sampling[job_id], filename, 'res1', job_id, r1_correct, r1_complete, sep = '  ')
 
-system(paste("echo ",result,' >> /home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/correctness_output/results_2.txt', sep = ""))
+system(paste("echo ",result0,' >> /home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/correctness_output/results_2.txt', sep = ""))
+system(paste("echo ",result1,' >> /home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/correctness_output/results_2.txt', sep = ""))
 
 
