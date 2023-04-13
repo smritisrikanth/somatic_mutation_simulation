@@ -94,9 +94,9 @@ kc0 <- KendallColijn(tr,tr2)
 print('success')
 
 #save results
-result <- paste(param_tb$sample_size[job_id], param_tb$sampling[job_id], mut_rate, filename, job_id, num_mut, kc0, kc0, sep = '  ')
+result <- paste(param_tb$sample_size[job_id], param_tb$sampling[job_id], mut_rate, filename, job_id, num_mut, ncol(chr_mat), kc0, sep = ' ')
 print('success')
 system(paste("echo ",result,' >> /home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/output/results.txt', sep = ""))
 output_filename <- paste('./output/', param_tb$input_file[job_id], '_', mut_rate, '_', param_tb$num_sim_2[job_id], '.rda', sep = "")
 print(output_filename)
-save(tr2, list = c("tr2"), file = output_filename)
+save(tr, count_graph, chr_mat, tr2, list = c("tr", "count_graph", "chr_mat", "tr2"), file = output_filename)
