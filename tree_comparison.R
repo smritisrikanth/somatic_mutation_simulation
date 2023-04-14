@@ -65,8 +65,8 @@ compare_partitions <- function (p1, p2) {
           
           if (compare_lists(l1,l2)) {
             count <- count + 1
-            print(i)
-            print(j)
+            print(l1)
+            print(l2)
           }
         }
       }
