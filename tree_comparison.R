@@ -22,6 +22,7 @@ job_id = 49
 param_tb <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/correctness_output/param_tb_2.txt',header = T)
 filename <- paste('./input/yi_output/', param_tb$input_file[job_id], sep = "")
 if (file.exists(filename)) {
+    print(filename)
     load(filename)
 } else {
     print('file not found')
@@ -89,6 +90,8 @@ r1 <- compare_partitions(p, p1)
 
 print(r0[1])
 print(r1[1])
+print(r0[3])
+print(r1[3])
 
 r0_correct <- r0[1]/r0[3]
 r1_correct <- r1[1]/r1[3]
