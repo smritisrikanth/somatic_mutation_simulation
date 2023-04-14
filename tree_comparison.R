@@ -87,10 +87,13 @@ p1 <- get_partitions(res1$gr)
 r0 <- compare_partitions(p, p0)
 r1 <- compare_partitions(p, p1)
 
-r0_correct <- (r0[3] - r0[1])/r0[3]
-r1_correct <- (r1[3] - r1[1])/r1[3]
-r0_complete <- (r0[2] - r0[1])/r0[2]
-r1_complete <- (r1[2] - r1[1])/r1[2]
+print(r0[1])
+print(r1[1])
+
+r0_correct <- r0[1]/r0[3]
+r1_correct <- r1[1]/r1[3]
+r0_complete <- r0[1]/r0[2]
+r1_complete <- r1[1]/r1[2]
 
 
 
