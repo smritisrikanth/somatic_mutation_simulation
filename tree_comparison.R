@@ -37,27 +37,6 @@ compare_lists <- function (l1, l2) {
   return(FALSE)
 }
 
-compare_partitions <- function (p1, p2) {
-  count = 0
-  for (node1 in p1) {
-    for (node2 in p2) {
-      l1 <- node1[[1]]
-      l2 <- node1[[2]]
-      l3 <- node2[[1]]
-      l4 <- node2[[2]]
-      if (compare_lists(l1,l3) && compare_lists(l2,l4)) {
-        count = count+1
-        break
-      }
-      if (compare_lists(l1,l4) && compare_lists(l2,l3)) {
-        count = count+1
-        break
-      }
-    }
-  }
-  return(c(count, length(p1), length(p2)))
-}
-
 get_partitions <- function(gr) {
         obj = list_dd_and_tips_mod2(gr)
         dd_list = obj$dd
