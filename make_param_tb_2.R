@@ -8,6 +8,6 @@ param_tb$input_file = paste('sample_size_', param_tb$sample_size, '_', param_tb$
 write.table(as.data.frame(param_tb),'/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/correctness_output/param_tb_2.txt',col.names = T,row.names = F,quote = F)
 
 results <- data.frame(matrix(nrow=0, ncol = 7))
-colnames(results) <- c('sample_size', 'sampling', 'mutation_rate', 'input_file', 'job_id', 'percent_correct', 'percent_complete')
+colnames(results) <- c('sample_size', 'sampling', 'mutation_rate', 'input_file', 'job_id', 'reconstruction_num', 'percent_correct', 'percent_complete')
 
 write.table(results,'/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/correctness_output/results_2.txt',col.names = T,row.names = F,quote = F)

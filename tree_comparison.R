@@ -14,12 +14,12 @@ devtools::load_all()
 
 setwd('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo')
 
-#job_id = 49
-job_id = as.numeric(Sys.getenv('SLURM_ARRAY_TASK_ID'))
+job_id = 49
+#job_id = as.numeric(Sys.getenv('SLURM_ARRAY_TASK_ID'))
 
 # construct parameter table 
 
-param_tb <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/correctness_output/param_tb_3.txt',header = T)
+param_tb <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/correctness_output/param_tb_2.txt',header = T)
 filename <- paste('./input/yi_output/', param_tb$input_file[job_id], sep = "")
 if (file.exists(filename)) {
     load(filename)
@@ -27,6 +27,8 @@ if (file.exists(filename)) {
     print('file not found')
     stop()
 }
+
+load()
 
 #functions
 
@@ -72,24 +74,30 @@ get_partitions <- function(gr) {
 }
 
 compare_partitions <- function (p1, p2) {
-  count = 0
+  overall_count = 0
   for (node1 in p1) {
     for (node2 in p2) {
-      l1 <- node1[[1]]
-      l2 <- node1[[2]]
-      l3 <- node2[[1]]
-      l4 <- node2[[2]]
-      if (compare_lists(l1,l3) && compare_lists(l2,l4)) {
-        count = count+1
+      if (length(node1) != length(node2)) {
         break
       }
-      if (compare_lists(l1,l4) && compare_lists(l2,l3)) {
-        count = count+1
-        break
+      count = 0
+      for (i in 1:length(node1)) {
+        for (j in 1:length(node2)) {
+          l1 <- node1[[i]]
+          l2 <- node2[[j]]
+          
+          if (compare_lists(l1,l2)) {
+            count <- count + 1
+          }
+        }
+      }
+      
+      if (count >= length(node1)) {
+        overall_count <- overall_count + 1
       }
     }
   }
-  return(c(count, length(p1), length(p2)))
+  return(c(overall_count, length(p1), length(p2)))
 }
 
 phy = readRDS("/home/ssrikan2/data-kreza1/smriti/qfm2/intermediate_data/gast_phylo.rds")
@@ -102,10 +110,10 @@ p1 <- get_partitions(res1$gr)
 r0 <- compare_partitions(p, p0)
 r1 <- compare_partitions(p, p1)
 
-r0_correct <- r0[1]/r0[3]
-r1_correct <- r1[1]/r1[3]
-r0_complete <- r0[1]/r0[2]
-r1_complete <- r1[1]/r1[2]
+r0_correct <- (r0[3] - r0[1])/r0[3]
+r1_correct <- (r1[3] - r1[1])/r1[3]
+r0_complete <- (r0[2] - r0[1])/r0[2]
+r1_complete <- (r1[2] - r1[1])/r1[2]
 
 
 
