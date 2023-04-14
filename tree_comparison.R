@@ -69,7 +69,7 @@ compare_partitions <- function (p1, p2) {
         }
       }
       
-      if (count >= length(node1)) {
+      if (count == length(node1)) {
         overall_count <- overall_count + 1
       }
     }
