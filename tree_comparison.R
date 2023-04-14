@@ -28,8 +28,6 @@ if (file.exists(filename)) {
     stop()
 }
 
-load()
-
 #functions
 
 compare_lists <- function (l1, l2) {
