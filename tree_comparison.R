@@ -14,8 +14,8 @@ devtools::load_all()
 
 setwd('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo')
 
-#job_id = 49
-job_id = as.numeric(Sys.getenv('SLURM_ARRAY_TASK_ID'))
+job_id = 49
+#job_id = as.numeric(Sys.getenv('SLURM_ARRAY_TASK_ID'))
 
 # construct parameter table 
 
@@ -32,9 +32,6 @@ if (file.exists(filename)) {
 
 compare_lists <- function (l1, l2) {
   if ((length(intersect(l1,l2)) == length(l1)) && (length(intersect(l1,l2)) == length(l2))) {
-    print(length(intersect(l1,l2)))
-    print(length(l1))
-    print(length(l2))
     return(TRUE)
   }
   return(FALSE)
@@ -67,10 +64,7 @@ compare_partitions <- function (p1, p2) {
           l2 <- node2[[j]]
           
           if (compare_lists(l1,l2)) {
-            print(compare_lists(l1,l2))
             count <- count + 1
-            print(l1)
-            print(l2)
           }
         }
       }
