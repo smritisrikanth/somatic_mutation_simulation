@@ -31,7 +31,7 @@ if (file.exists(filename)) {
 #functions
 
 compare_lists <- function (l1, l2) {
-  if (length(intersect(l1,l2) == length(l1)) && length(intersect(l1,l2) == length(l2))) {
+  if ((length(intersect(l1,l2)) == length(l1)) && (length(intersect(l1,l2)) == length(l2))) {
     print(length(intersect(l1,l2)))
     print(length(l1))
     print(length(l2))
