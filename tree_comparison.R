@@ -14,12 +14,12 @@ devtools::load_all()
 
 setwd('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo')
 
-#job_id = 49
-job_id = as.numeric(Sys.getenv('SLURM_ARRAY_TASK_ID'))
+job_id = 49
+#job_id = as.numeric(Sys.getenv('SLURM_ARRAY_TASK_ID'))
 
 # construct parameter table 
 
-param_tb <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/correctness_output/param_tb_2.txt',header = T)
+param_tb <- read.table('/home/ssrikan2/data-kreza1/smriti/somatic_mut_sim/git_repo/correctness_output/param_tb_3.txt',header = T)
 filename <- paste('./input/yi_output/', param_tb$input_file[job_id], sep = "")
 if (file.exists(filename)) {
     load(filename)
@@ -28,16 +28,38 @@ if (file.exists(filename)) {
     stop()
 }
 
+load()
+
 #functions
 
 compare_lists <- function (l1, l2) {
-  if ((length(intersect(l1,l2)) == length(l1)) && (length(intersect(l1,l2)) == length(l2))) {
-    print(length(intersect(l1,l2)))
-    print(length(l1))
-    print(length(l2))
+  if (length(intersect(l1,l2) == length(l1)) && length(intersect(l1,l2) == length(l2))) {
     return(TRUE)
   }
   return(FALSE)
+}
+
+
+
+compare_partitions <- function (p1, p2) {
+  count = 0
+  for (node1 in p1) {
+    for (node2 in p2) {
+      l1 <- node1[[1]]
+      l2 <- node1[[2]]
+      l3 <- node2[[1]]
+      l4 <- node2[[2]]
+      if (compare_lists(l1,l3) && compare_lists(l2,l4)) {
+        count = count+1
+        break
+      }
+      if (compare_lists(l1,l4) && compare_lists(l2,l3)) {
+        count = count+1
+        break
+      }
+    }
+  }
+  return(c(count, length(p1), length(p2)))
 }
 
 get_partitions <- function(gr) {
@@ -53,6 +75,12 @@ get_partitions <- function(gr) {
         part_list
 }
 
+
+load('~/Downloads/sample_size_50_fixed_49.rda')
+phy = readRDS("~/Documents/qfm2/intermediate_data/gast_phylo.rds")
+p0 <- get_partitions(res0$gr)
+p1 <- get_partitions(res1$gr)
+
 compare_partitions <- function (p1, p2) {
   overall_count = 0
   for (node1 in p1) {
@@ -67,15 +95,12 @@ compare_partitions <- function (p1, p2) {
           l2 <- node2[[j]]
           
           if (compare_lists(l1,l2)) {
-            print(compare_lists(l1,l2))
             count <- count + 1
-            print(l1)
-            print(l2)
           }
         }
       }
       
-      if (count == length(node1)) {
+      if (count >= length(node1)) {
         overall_count <- overall_count + 1
       }
     }
@@ -93,13 +118,10 @@ p1 <- get_partitions(res1$gr)
 r0 <- compare_partitions(p, p0)
 r1 <- compare_partitions(p, p1)
 
-print(r0[1])
-print(r1[1])
-
-r0_correct <- r0[1]/r0[3]
-r1_correct <- r1[1]/r1[3]
-r0_complete <- r0[1]/r0[2]
-r1_complete <- r1[1]/r1[2]
+r0_correct <- (r0[3] - r0[1])/r0[3]
+r1_correct <- (r1[3] - r1[1])/r1[3]
+r0_complete <- (r0[2] - r0[1])/r0[2]
+r1_complete <- (r1[2] - r1[1])/r1[2]
 
 
 
