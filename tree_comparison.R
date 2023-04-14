@@ -67,6 +67,7 @@ compare_partitions <- function (p1, p2) {
           l2 <- node2[[j]]
           
           if (compare_lists(l1,l2)) {
+            print(compare_lists(l1,l2))
             count <- count + 1
             print(l1)
             print(l2)
